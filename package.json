@@ -1,0 +1,20 @@
+{
+  "name": "drawyurtscom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "exe": "nexe --build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nexe": "^4.0.0-beta.18"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "open": "^8.2.1",
+    "static-server": "^2.2.1"
+  }
+}
