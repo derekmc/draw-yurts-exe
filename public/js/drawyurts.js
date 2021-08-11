@@ -1,4 +1,5 @@
 
+window.addEventListener("load", init);
 const KEY = "drawing9989";
 Array.prototype.rotate = (() => {
   let unshift = Array.prototype.unshift,
@@ -27,7 +28,7 @@ let drawing = {
   ],
   styles: [{
     precision: 1,
-    color: blue,
+    color: 'blue',
     width: 3
   }],
   strokeIndex: 1,
@@ -57,12 +58,12 @@ function draw(){
   
   for(let i=0; i<drawing.strokeIndex; ++i){
     let stroke = strokes[i];
-    let style = styles[stroke.style];
+    let style = styles[stroke.style] ?? {};
     let pts = stroke.pts;
-    let tool = stroke.tool;
+    let tool = stroke.tool ?? "draw";
     let window = windows[stroke.window];
-    let color = style.color;
-    let width = style width;
+    let color = style.color ?? "#000";
+    let width = style.width ?? 2;
     let precision = style.precision;
     let {x0, y0, x1, y1, zoompow2} = drawing;
     let [x2, y2] = [(x0 + x1)/2, (y0 + y1)/2];
@@ -70,8 +71,9 @@ function draw(){
     switch(tool){
       case 'draw':
         for(let j=0; j<pts.length - 1; j+=2){
-          let pt = [pts[j], pts[j+1];
-          if(j==0) ctx.moveTo(
+          let [x, y] = [pts[j], pts[j+1]];
+          if(j==0) ctx.moveTo(x, y);
+          else ctx.lineTo(x,y);
         }
         break;
       case 'line':
@@ -79,6 +81,10 @@ function draw(){
       case 'arc':
         break;
     }
+    ctx.lineWidth = width;
+    ctx.style = color;
+    ctx.stroke();
+  }
 }
 
 function init(){

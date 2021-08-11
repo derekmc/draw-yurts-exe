@@ -1,0 +1,6 @@
+*~
+*.exe
+*-linux
+*-macos
+node_modules/
+*.swp
